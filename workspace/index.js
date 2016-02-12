@@ -26,7 +26,6 @@ $(function() {
             checkForXWin(); // did the player win? **rename this
             checkForTie();
             computersTurn();
-
         }
     });
 
@@ -38,8 +37,6 @@ $(function() {
             checkForXWin();
             checkForTie();
             computersTurn();
-
-
         }
     });
 
@@ -62,7 +59,6 @@ $(function() {
             checkForXWin();
             checkForTie();
             computersTurn();
-
         }
     });
 
@@ -74,7 +70,6 @@ $(function() {
             checkForXWin();
             checkForTie();
             computersTurn();
-
         }
     });
 
@@ -86,7 +81,6 @@ $(function() {
             checkForXWin();
             checkForTie();
             computersTurn();
-
         }
     });
 
@@ -98,8 +92,6 @@ $(function() {
             checkForXWin();
             checkForTie();
             computersTurn();
-
-
         }
     });
 
@@ -111,7 +103,6 @@ $(function() {
             checkForXWin();
             checkForTie();
             computersTurn();
-
         }
     });
 
@@ -123,27 +114,23 @@ $(function() {
             checkForXWin();
             checkForTie();
             computersTurn();
-
         }
     });
 
 
     function winningSets(a) {  // takes away sets that are no longer winnable to the computer
 
-        for (i = availableWinningSets.length - 1; i >= 0; i--) {
+        for (var i = availableWinningSets.length - 1; i >= 0; i--) {
             if (availableWinningSets[i].indexOf(a) !== -1) {
                 availableWinningSets.splice(i, 1);
             }
         }
-        // console.log(availableWinningSets);
     }
 
 
     function checkForXWin() {
-
-        // sort playerArray ascending numerically
-        // console.log(playerArray);
-
+        
+        // [[1, 2, 3], [1, 4, 7], [1, 5, 9], [2, 5, 8], [3, 5, 7], [3, 6, 9], [4, 5, 6], [7, 8, 9]]; I can refine my statement saying that if any single array has an indexOf xArray i - xArray.length.
 
         if (playerArray.indexOf(1) !== -1 && playerArray.indexOf(2) !== -1 && playerArray.indexOf(3) !== -1    // horizontal wins
             || playerArray.indexOf(4) !== -1 && playerArray.indexOf(5) !== -1 && playerArray.indexOf(6) !== -1
@@ -156,14 +143,10 @@ $(function() {
         ) {
             alert("X Wins!");
             initialize();
-
         }
     }
 
     function checkForOWin() {
-        
-         console.log('checkforOWin ---------- oArray  ' + compArray + '           xArray----------' + playerArray);
-        
         
         if ((compArray.indexOf(1) !== -1 && compArray.indexOf(2) !== -1 && compArray.indexOf(3) !== -1)    // horizontal wins
             || (compArray.indexOf(4) !== -1 && compArray.indexOf(5) !== -1 && compArray.indexOf(6) !== -1)
@@ -176,17 +159,11 @@ $(function() {
         ) {
             alert("O Wins!");
             initialize();
-
         }
     }
 
     function checkForTie() {
         
-           // alert('checkforTie' + compArray + playerArray);
-           
-           
-           
-           
            totalArray = playerArray.concat(compArray).sort();
       missingMoves = [];
 
@@ -196,8 +173,6 @@ $(function() {
                  missingMoves.push(i);
             }
      }
-        
-        
         if ( missingMoves.length === 0){
             alert("Tie!");
             initialize();
@@ -220,67 +195,43 @@ $(function() {
         compArray = [];
         compJoined = 0;
         availableWinningSets = [[1, 2, 3], [1, 4, 7], [1, 5, 9], [2, 5, 8], [3, 5, 7], [3, 6, 9], [4, 5, 6], [7, 8, 9]];
-
-
     }
 
 
     function computerFirst() {
 
         initialize();
-
+        
         var random = Math.floor((Math.random() * 9) + 1);
 
         if (random === 2 || random === 4 || random === 6 || random === 8) {
             random += 1;
         }
 
-
         $('#container-' + random).html(compSymbol);
         compArray.push(random);
-        // console.log(compArray);
     }
-
 
     function computersTurn() {
 
-
         var move = 0; // reset the move to zero. A move has not occured yet
-
         playerJoined = playerArray.sort(function (a, b) {
             return a - b;
         }).join('');
-        // console.log(playerJoined);
 
         compJoined = compArray.sort(function (a, b) {
             return a - b;
         }).join('');
        
-
-
-        //******************************* if computer goes second -- default for now
-
-
-        //******************************* Winning move
         var pattern = compJoined; // The computer looks at its own positions/pattern to look for a winning move
-         // console.log(pattern + '                                       PATTERN IS----------------------');
-        // winningmove();
         mainAlgoMove();// most important that the computer looks for a game winning move first.
-        //*******************************
-
-
         var pattern = playerJoined; // the computer looks at the opponents positions since there are no game winning moves
         firstMove(); //the second option for the AI to consider. Has anyone played the board? If not, play a first move.
-        // alert('1');
         mainAlgoMove(); // does the player have a finishing move next? If so, prevent it.
-        // alert('2');
         mostWinPosibilitiesMove(); // The board is almost full. if there is any possibility for the computer to still win,  it will move on the first available winning set
-        // alert('3')
         fillBoardMove(); // there should be no winning possibilities left when this function triggers.
-        // alert('check for winnnnnnnnnnnnnnnnn');
         checkForOWin();
-        checkForTie();
-
+        checkForTie();  
 
         function firstMove() {
 
@@ -296,11 +247,8 @@ $(function() {
              //   // console.log(compArray);
                 $('#container-5').html(compSymbol);
                 move = 1;
-        checkForOWin();
-        checkForTie();
             }
         }
-
 
         function mainAlgoMove() { // *********** bug happens because it finds multiple winnning computer combinations. Sometimes the one it finds comes up with the container being taken by an x. In this event
  alert(move + ' before mainAlgo')
@@ -315,8 +263,6 @@ $(function() {
                 $('#container-1').html(compSymbol);
                 move = 1;
                 // console.log(compArray);
-                checkForOWin();
-                checkForTie();
             }
             if (move == 0 && ((pattern.indexOf(5) !== -1 && pattern.indexOf(8) !== -1) || (pattern.indexOf(1) !== -1 && pattern.indexOf(3) !== -1) || (pattern.indexOf(1) !== -1 && pattern.indexOf(9) !== -1) ||
                 (pattern.indexOf(2) !== -1 && pattern.indexOf(8) !== -1)) && $('#container-2').html() == "") {
@@ -325,26 +271,20 @@ $(function() {
                 move = 1;
                 // console.log(compArray);
             //    alert('mainAlgoMove 2');
-                checkForOWin();
-                checkForTie();
             }
             if (move == 0 && (                   (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(16) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(26) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(29) !== -1) ||                      (pattern.indexOf(1) !== -1 && pattern.indexOf(2) !== -1 ) || (pattern.indexOf(5) !== -1 && pattern.indexOf(7) !== -1 ) || (pattern.indexOf(6) !== -1) && pattern.indexOf(9) !== -1) && $('#container-3').html() == "") {
                 compArray.push(3);
                 $('#container-3').html(compSymbol); 
                 move = 1;
                 // console.log(compArray);
-                checkForOWin();
-                checkForTie();
             }
-            if (move == 0 &&((pattern.indexOf(1) !== -1 && pattern.indexOf(7) !== -1) || (pattern.indexOf(5) !== -1 && pattern.indexOf(6) !== -1 ) || (pattern.indexOf(2) !== -1 && pattern.indexOf(8) !== -1) || (pattern.indexOf(3) !== -1 && pattern.indexOf(7) !== -1) || (pattern.indexOf(4) !== -1 && pattern.indexOf(6) !== -1)) && $('#container-4').html() == "") {
+            if (move == 0 &&((pattern.indexOf(1) !== -1 && pattern.indexOf(7) !== -1) || (pattern.indexOf(5) !== -1 && pattern.indexOf(6) !== -1 ) || (pattern.indexOf(2) !== -1 && pattern.indexOf(8) !== -1) || (pattern.indexOf(4) !== -1 && pattern.indexOf(6) !== -1)) && $('#container-4').html() == "") {
                 compArray.push(4);
                 $('#container-4').html(compSymbol);
                 move = 1;
             //    alert('mainAlgoMove 4');
 
                 // console.log(compArray);
-                checkForOWin();
-                checkForTie();
             }
             if (move == 0 && ((pattern.indexOf(1) !== -1 && pattern.indexOf(9) !== -1) || (pattern.indexOf(2) !== -1 && pattern.indexOf(8) !== -1) || (pattern.indexOf(3) !== -1 && pattern.indexOf(7) !== -1) || (pattern.indexOf(4) !== -1 && pattern.indexOf(6) !== -1)) && $('#container-5').html() == "") {
                 compArray.push(5);
@@ -352,41 +292,30 @@ $(function() {
                 move = 1;
          //       alert('mainAlgoMove');
                 // console.log(compArray);
-                checkForOWin();
-                checkForTie();
             }
             if (move == 0 && ((pattern.indexOf(3) !== -1 && pattern.indexOf(9) !== -1) || (pattern.indexOf(4) !== -1 && pattern.indexOf(5) !== -1)) && $('#container-6').html() == "") {
                 compArray.push(6);
                 $('#container-6').html(compSymbol);
                 move = 1;
                 // console.log(compArray);
-                checkForOWin();
-                checkForTie();
             }
             if (move == 0 && (                  (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(48) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(49) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(18) !== -1) ||                   (pattern.indexOf(1) !== -1 && pattern.indexOf(4) !== -1) || (pattern.indexOf(3) !== -1 && pattern.indexOf(5) !== -1) || (pattern.indexOf(8) !== -1 && pattern.indexOf(9) !== -1)) && $('#container-7').html() == "") {
                 compArray.push(7);
                 $('#container-7').html(compSymbol);
                 move = 1;
                 // console.log(compArray);
-                checkForOWin();
-                checkForTie();
             }
             if (move == 0 && ((pattern.indexOf(2) !== -1 && pattern.indexOf(5) !== -1) || (pattern.indexOf(7) !== -1 && pattern.indexOf(9) !== -1)) && $('#container-8').html() == "") {
                 compArray.push(8);
                 $('#container-8').html(compSymbol);
                 move = 1;
                 // console.log(compArray);
-                checkForOWin();
-                checkForTie();
-                
             }
             if (move == 0 && (               (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(68) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(38) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(67) !== -1) ||          (pattern.indexOf(1) !== -1 && pattern.indexOf(5) !== -1) || (pattern.indexOf(3) !== -1 && pattern.indexOf(6) !== -1) || (pattern.indexOf(7) !== -1 && pattern.indexOf(8) !== -1)) && $('#container-9').html() == "") {
                 compArray.push(9);
                 $('#container-9').html(compSymbol);
                 move = 1;
                 // console.log(compArray);
-                checkForOWin();
-                checkForTie();
             }
         }
 
@@ -418,12 +347,8 @@ $(function() {
             }
         compArray.push(nextMove[0]);
         $('#container-' + nextMove[0]).html(compSymbol); 
-
-        checkForOWin();
-        checkForTie();
 }
         }
-
 
 function fillBoardMove(){
   //  alert('fillBoardMove');
@@ -431,8 +356,6 @@ if (move == 0){
         alert('fillBoardMove');
           compArray.push(missingMoves[0]);
     $('#container-' + missingMoves[0]).html(compSymbol);
-            checkForOWin();
-            checkForTie();    
     }
  }
     }
