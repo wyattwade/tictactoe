@@ -4,6 +4,7 @@ $(function() {
     var playerArray = []; // all player moves combined;
     var compArray = []; // all computer moves combined;
     var totalArray;  // player + computer moves combined;
+    var missingMoves // moves that have yet to be playeed;
     var playerJoined = 0; // A sorted string version of playerArray; Helps me make certain algorythms shorter;
     var compJoined = 0; // A sorted string version of compArray; Helps me make certain algorythms shorter;
     var playerSymbol = 'X'; 
@@ -182,18 +183,22 @@ $(function() {
     function checkForTie() {
         
            // alert('checkforTie' + compArray + playerArray);
-        
-        if (( $('#container-1').html() == compSymbol || $('#container-1').html() == playerSymbol)
-            && ($('#container-2').html() == compSymbol || $('#container-2').html() == playerSymbol)
-            && ($('#container-3').html() == compSymbol || $('#container-3').html() == playerSymbol)
-            && ($('#container-4').html() == compSymbol || $('#container-4').html() == playerSymbol)
-            && ($('#container-5').html() == compSymbol || $('#container-5').html() == playerSymbol)
-            && ($('#container-6').html() == compSymbol || $('#container-6').html() == playerSymbol)
-            && ($('#container-7').html() == compSymbol || $('#container-7').html() == playerSymbol)
-            && ($('#container-8').html() == compSymbol || $('#container-8').html() == playerSymbol)
-            && ($('#container-9').html() == compSymbol || $('#container-9').html() == playerSymbol)
+           
+           
+           
+           
+           totalArray = playerArray.concat(compArray).sort();
+      missingMoves = [];
 
-        ) {
+        for (var i = 1; i <= 9; i++){
+           
+                if (totalArray.indexOf(i) === -1){
+                 missingMoves.push(i);
+            }
+     }
+        
+        
+        if ( missingMoves.length === 0){
             alert("Tie!");
             initialize();
         }
@@ -284,7 +289,6 @@ $(function() {
             //    // console.log(compArray);
                 $('#container-1').html(compSymbol);
                 move = 1;
-                // console.log(compArray);
             }
 
             if (compArray == 0 && (move == 0 && (pattern == 1 || pattern == 2 || pattern == 3 || pattern == 4 || pattern == 6 || pattern == 7 || pattern == 8 || pattern == 9) && $('#container-5').html() == "")) {
@@ -292,8 +296,6 @@ $(function() {
              //   // console.log(compArray);
                 $('#container-5').html(compSymbol);
                 move = 1;
-                // console.log(compArray);
-             //   alert('firstMove');
         checkForOWin();
         checkForTie();
             }
@@ -303,14 +305,11 @@ $(function() {
         function mainAlgoMove() { // *********** bug happens because it finds multiple winnning computer combinations. Sometimes the one it finds comes up with the container being taken by an x. In this event
  alert(move + ' before mainAlgo')
  alert(pattern);
-// console.log('finish move working' + pattern);
-
 
             if (move == 0 && playerArray.length == 0 && compArray.length == 0){    //This will trigger when the board is cleared and the player had the last turn. The computer will go first and have a random move
                  computerFirst();
         //                  alert('computer First');
             }
-
             if (move == 0 && (          (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(24) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(34) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(27) !== -1) ||                               (pattern.indexOf(2) !== -1 && pattern.indexOf(3) !== -1) || (pattern.indexOf(5) !== -1 && pattern.indexOf(9) !== -1) || (pattern.indexOf(4) !== -1 && pattern.indexOf(7) !== -1)) && $('#container-1').html() == "") {
                 compArray.push(1);
                 $('#container-1').html(compSymbol);
@@ -319,7 +318,6 @@ $(function() {
                 checkForOWin();
                 checkForTie();
             }
-
             if (move == 0 && ((pattern.indexOf(5) !== -1 && pattern.indexOf(8) !== -1) || (pattern.indexOf(1) !== -1 && pattern.indexOf(3) !== -1) || (pattern.indexOf(1) !== -1 && pattern.indexOf(9) !== -1) ||
                 (pattern.indexOf(2) !== -1 && pattern.indexOf(8) !== -1)) && $('#container-2').html() == "") {
                 compArray.push(2);
@@ -330,8 +328,6 @@ $(function() {
                 checkForOWin();
                 checkForTie();
             }
-
-
             if (move == 0 && (                   (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(16) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(26) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(29) !== -1) ||                      (pattern.indexOf(1) !== -1 && pattern.indexOf(2) !== -1 ) || (pattern.indexOf(5) !== -1 && pattern.indexOf(7) !== -1 ) || (pattern.indexOf(6) !== -1) && pattern.indexOf(9) !== -1) && $('#container-3').html() == "") {
                 compArray.push(3);
                 $('#container-3').html(compSymbol); 
@@ -340,7 +336,6 @@ $(function() {
                 checkForOWin();
                 checkForTie();
             }
-
             if (move == 0 &&((pattern.indexOf(1) !== -1 && pattern.indexOf(7) !== -1) || (pattern.indexOf(5) !== -1 && pattern.indexOf(6) !== -1 ) || (pattern.indexOf(2) !== -1 && pattern.indexOf(8) !== -1) || (pattern.indexOf(3) !== -1 && pattern.indexOf(7) !== -1) || (pattern.indexOf(4) !== -1 && pattern.indexOf(6) !== -1)) && $('#container-4').html() == "") {
                 compArray.push(4);
                 $('#container-4').html(compSymbol);
@@ -351,8 +346,6 @@ $(function() {
                 checkForOWin();
                 checkForTie();
             }
-
-
             if (move == 0 && ((pattern.indexOf(1) !== -1 && pattern.indexOf(9) !== -1) || (pattern.indexOf(2) !== -1 && pattern.indexOf(8) !== -1) || (pattern.indexOf(3) !== -1 && pattern.indexOf(7) !== -1) || (pattern.indexOf(4) !== -1 && pattern.indexOf(6) !== -1)) && $('#container-5').html() == "") {
                 compArray.push(5);
                 $('#container-5').html(compSymbol);
@@ -362,8 +355,6 @@ $(function() {
                 checkForOWin();
                 checkForTie();
             }
-
-
             if (move == 0 && ((pattern.indexOf(3) !== -1 && pattern.indexOf(9) !== -1) || (pattern.indexOf(4) !== -1 && pattern.indexOf(5) !== -1)) && $('#container-6').html() == "") {
                 compArray.push(6);
                 $('#container-6').html(compSymbol);
@@ -372,7 +363,6 @@ $(function() {
                 checkForOWin();
                 checkForTie();
             }
-
             if (move == 0 && (                  (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(48) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(49) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(18) !== -1) ||                   (pattern.indexOf(1) !== -1 && pattern.indexOf(4) !== -1) || (pattern.indexOf(3) !== -1 && pattern.indexOf(5) !== -1) || (pattern.indexOf(8) !== -1 && pattern.indexOf(9) !== -1)) && $('#container-7').html() == "") {
                 compArray.push(7);
                 $('#container-7').html(compSymbol);
@@ -381,7 +371,6 @@ $(function() {
                 checkForOWin();
                 checkForTie();
             }
-
             if (move == 0 && ((pattern.indexOf(2) !== -1 && pattern.indexOf(5) !== -1) || (pattern.indexOf(7) !== -1 && pattern.indexOf(9) !== -1)) && $('#container-8').html() == "") {
                 compArray.push(8);
                 $('#container-8').html(compSymbol);
@@ -391,7 +380,6 @@ $(function() {
                 checkForTie();
                 
             }
-
             if (move == 0 && (               (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(68) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(38) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(67) !== -1) ||          (pattern.indexOf(1) !== -1 && pattern.indexOf(5) !== -1) || (pattern.indexOf(3) !== -1 && pattern.indexOf(6) !== -1) || (pattern.indexOf(7) !== -1 && pattern.indexOf(8) !== -1)) && $('#container-9').html() == "") {
                 compArray.push(9);
                 $('#container-9').html(compSymbol);
@@ -400,9 +388,7 @@ $(function() {
                 checkForOWin();
                 checkForTie();
             }
-
         }
-
 
         function mostWinPosibilitiesMove() {
             alert(move + ' before mostWins');// finds the move with the most ammount of win possibilities
@@ -412,8 +398,7 @@ $(function() {
             var nextMove  = [0,0];  // [move location, number of win possibilities];
 
             for (var b = 1; b <= 9; b++, winPossibilities = 0){
-               // if ($('#container-' + b).html() !== ""){
-               //     break };
+               
             for (var i = 0; i < availableWinningSets.length; i++) {
                 if ($('#container-' + b).html() == "" && (b == 1 || b== 3 || b == 7 || b == 9)){        
                     if (availableWinningSets[i].indexOf(b) !== -1) {
@@ -422,10 +407,6 @@ $(function() {
                     if(winPossibilities > 0){ // If any win possibilities exist for the computer, a move should occur and the comps turn is over. 
                         move = 1;
                         }
-                     //   // console.log(availableWinningSets[i]);
-                     //  // console.log(b);
-                     //   // console.log(b + 'has' + winPossibilities + ' Win Possibilities');
-
                         if (winPossibilities > nextMove[1]){
                             nextMove[0] = b; nextMove[1] = winPossibilities;
                             if (winPossibilities == 2){ break } 
@@ -435,10 +416,8 @@ $(function() {
                 }
             }
             }
-
-   // alert('mostpossiblewinsmove')
-            compArray.push(nextMove[0]);
-            $('#container-' + nextMove[0]).html(compSymbol); 
+        compArray.push(nextMove[0]);
+        $('#container-' + nextMove[0]).html(compSymbol); 
 
         checkForOWin();
         checkForTie();
@@ -446,40 +425,15 @@ $(function() {
         }
 
 
-
-
 function fillBoardMove(){
   //  alert('fillBoardMove');
-    alert(move + ' fillBoardMove');
 if (move == 0){
-    
-    
-    
-    
-    
-      totalArray = playerArray.concat(compArray).sort();
-      var missingMoves = [];
-
-        for (var i = 1; i <= 9; i++){
-           
-                if (totalArray.indexOf(i) === -1){
-                 missingMoves.push(i);
-            }
-            
-            
-        }
-       alert(missingMoves);
-      compArray.push(missingMoves[0]);
+        alert('fillBoardMove');
+          compArray.push(missingMoves[0]);
     $('#container-' + missingMoves[0]).html(compSymbol);
             checkForOWin();
             checkForTie();    
     }
-     
  }
-
-
-
-
-
     }
 });
