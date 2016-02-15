@@ -4,11 +4,13 @@ $(function() {
     var playerArray = []; // all player moves combined;
     var compArray = []; // all computer moves combined;
     var totalArray;  // player + computer moves combined;
-    var missingMoves // moves that have yet to be playeed;
+    var missingMoves; // moves that have yet to be playeed;
     var playerJoined = 0; // A sorted string version of playerArray; Helps me make certain algorythms shorter;
     var compJoined = 0; // A sorted string version of compArray; Helps me make certain algorythms shorter;
-    var playerSymbol = 'X'; 
-    var compSymbol = 'O';
+    var playerColor = '#d4e88f'  
+    var playerSymbol = ' '; 
+    var compSymbol = ' ';
+    var compColor = 'red';
 
 
     $('#compFirst').click(function () {
@@ -18,104 +20,38 @@ $(function() {
     $('#reset').click(function () {
         initialize();
     });
-    $('#container-1').click(function () {
-        if ($('#container-1').html() == "") {
-            $('#container-1').html(playerSymbol);
-            playerArray.push(1); // pushes 1 to the sequence that the player has played
-            winningSets(1); // removes any winning set containing the number 1 in it. The computer can no longer win in those rows/columns.
+  
+ 
+  
+  
+  
+  
+  
+  
+   $('.container').click(function () {
+       var fieldId;
+       fieldId = $(this).attr('id');
+       clickFunction(fieldId.substr(fieldId.length - 1));
+    });
+  
+  
+  
+  
+  
+  
+  
+  
+  
+function clickFunction(num){
+   if ($('#container-'+ num).html() == "") {
+            $('#container-'+ num).html(playerSymbol).css({'background-color': playerColor})       
+            playerArray.push(num); // pushes 1 to the sequence that the player has played
+            winningSets(num); // removes any winning set containing the number 1 in it. The computer can no longer win in those rows/columns.
             checkForXWin(); // did the player win? **rename this
             checkForTie();
             computersTurn();
         }
-    });
-
-    $('#container-2').click(function () {
-        if ($('#container-2').html() == "") {
-            $('#container-2').html(playerSymbol);
-            playerArray.push(2);
-            winningSets(2);
-            checkForXWin();
-            checkForTie();
-            computersTurn();
-        }
-    });
-
-    $('#container-3').click(function () {
-        if ($('#container-3').html() == "") {
-            $('#container-3').html(playerSymbol);
-            playerArray.push(3);
-            winningSets(3);
-            checkForXWin();
-            checkForTie();
-            computersTurn();
-        }
-    });
-
-    $('#container-4').click(function () {
-        if ($('#container-4').html() == "") {
-            $('#container-4').html(playerSymbol);
-            playerArray.push(4);
-            winningSets(4);
-            checkForXWin();
-            checkForTie();
-            computersTurn();
-        }
-    });
-
-    $('#container-5').click(function () {
-        if ($('#container-5').html() == "") {
-            $('#container-5').html(playerSymbol);
-            playerArray.push(5);
-            winningSets(5);
-            checkForXWin();
-            checkForTie();
-            computersTurn();
-        }
-    });
-
-    $('#container-6').click(function () {
-        if ($('#container-6').html() == "") {
-            $('#container-6').html(playerSymbol);
-            playerArray.push(6);
-            winningSets(6);
-            checkForXWin();
-            checkForTie();
-            computersTurn();
-        }
-    });
-
-    $('#container-7').click(function () {
-        if ($('#container-7').html() == "") {
-            $('#container-7').html(playerSymbol);
-            playerArray.push(7);
-            winningSets(7);
-            checkForXWin();
-            checkForTie();
-            computersTurn();
-        }
-    });
-
-    $('#container-8').click(function () {
-        if ($('#container-8').html() == "") {
-            $('#container-8').html(playerSymbol);
-            playerArray.push(8);
-            winningSets(8);
-            checkForXWin();
-            checkForTie();
-            computersTurn();
-        }
-    });
-
-    $('#container-9').click(function () {
-        if ($('#container-9').html() == "") {
-            $('#container-9').html(playerSymbol);
-            playerArray.push(9);
-            winningSets(9);
-            checkForXWin();
-            checkForTie();
-            computersTurn();
-        }
-    });
+}  
 
 
     function winningSets(a) {  // takes away sets that are no longer winnable to the computer
@@ -126,7 +62,6 @@ $(function() {
             }
         }
     }
-
 
     function checkForXWin() {
         
@@ -165,38 +100,27 @@ $(function() {
     function checkForTie() {
         
            totalArray = playerArray.concat(compArray).sort();
-      missingMoves = [];
 
-        for (var i = 1; i <= 9; i++){
-           
-                if (totalArray.indexOf(i) === -1){
-                 missingMoves.push(i);
-            }
-     }
-        if ( missingMoves.length === 0){
+
+        if ( totalArray.length === 9){
             alert("Tie!");
             initialize();
         }
     }
 
     function initialize() {
-        $('#container-1').html('');
-        $('#container-2').html('');
-        $('#container-3').html('');
-        $('#container-4').html(''); 
-        $('#container-5').html('');
-        $('#container-6').html('');
-        $('#container-7').html('');
-        $('#container-8').html('');
-        $('#container-9').html('');
-
+      
+      for (i = 1; i <= 9; i++){
+        $('#container-'+i).html('');  
+         $('#container-'+i).css('background-color', 'white');   
+    }
+      
         playerArray = [];
         playerJoined = 0;
         compArray = [];
         compJoined = 0;
         availableWinningSets = [[1, 2, 3], [1, 4, 7], [1, 5, 9], [2, 5, 8], [3, 5, 7], [3, 6, 9], [4, 5, 6], [7, 8, 9]];
     }
-
 
     function computerFirst() {
 
@@ -208,7 +132,7 @@ $(function() {
             random += 1;
         }
 
-        $('#container-' + random).html(compSymbol);
+        $('#container-' + random).html(compSymbol).css({'background-color': compColor});
         compArray.push(random);
     }
 
@@ -238,89 +162,75 @@ $(function() {
             if (move == 0 && (pattern == 5 && $('#container-1').html() == "")) {
                 compArray.push(1);
             //    // console.log(compArray);
-                $('#container-1').html(compSymbol);
+                $('#container-1').html(compSymbol).css({'background-color': compColor});
                 move = 1;
             }
 
             if (compArray == 0 && (move == 0 && (pattern == 1 || pattern == 2 || pattern == 3 || pattern == 4 || pattern == 6 || pattern == 7 || pattern == 8 || pattern == 9) && $('#container-5').html() == "")) {
                 compArray.push(5);
              //   // console.log(compArray);
-                $('#container-5').html(compSymbol);
+                $('#container-5').html(compSymbol).css({'background-color': compColor});
                 move = 1;
             }
         }
 
         function mainAlgoMove() { // *********** bug happens because it finds multiple winnning computer combinations. Sometimes the one it finds comes up with the container being taken by an x. In this event
- alert(move + ' before mainAlgo')
- alert(pattern);
 
             if (move == 0 && playerArray.length == 0 && compArray.length == 0){    //This will trigger when the board is cleared and the player had the last turn. The computer will go first and have a random move
                  computerFirst();
-        //                  alert('computer First');
             }
-            if (move == 0 && (          (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(24) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(34) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(27) !== -1) ||                               (pattern.indexOf(2) !== -1 && pattern.indexOf(3) !== -1) || (pattern.indexOf(5) !== -1 && pattern.indexOf(9) !== -1) || (pattern.indexOf(4) !== -1 && pattern.indexOf(7) !== -1)) && $('#container-1').html() == "") {
+            if (move == 0 && (          (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(24) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(34) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(27) !== -1) ||(pattern.indexOf(2) !== -1 && pattern.indexOf(3) !== -1) || (pattern.indexOf(5) !== -1 && pattern.indexOf(9) !== -1) || (pattern.indexOf(4) !== -1 && pattern.indexOf(7) !== -1)) && $('#container-1').html() == "") {
                 compArray.push(1);
-                $('#container-1').html(compSymbol);
+                $('#container-1').html(compSymbol).css({'background-color': compColor});
                 move = 1;
-                // console.log(compArray);
+
             }
-            if (move == 0 && ((pattern.indexOf(5) !== -1 && pattern.indexOf(8) !== -1) || (pattern.indexOf(1) !== -1 && pattern.indexOf(3) !== -1) || (pattern.indexOf(1) !== -1 && pattern.indexOf(9) !== -1) ||
+            if (move == 0 && ((pattern.indexOf(5) !== -1 && pattern.indexOf(8) !== -1) || (pattern.indexOf(1) !== -1 && pattern.indexOf(3) !== -1) ||
                 (pattern.indexOf(2) !== -1 && pattern.indexOf(8) !== -1)) && $('#container-2').html() == "") {
                 compArray.push(2);
-                $('#container-2').html(compSymbol);
+                $('#container-2').html(compSymbol).css({'background-color': compColor});
                 move = 1;
-                // console.log(compArray);
-            //    alert('mainAlgoMove 2');
+
             }
-            if (move == 0 && (                   (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(16) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(26) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(29) !== -1) ||                      (pattern.indexOf(1) !== -1 && pattern.indexOf(2) !== -1 ) || (pattern.indexOf(5) !== -1 && pattern.indexOf(7) !== -1 ) || (pattern.indexOf(6) !== -1) && pattern.indexOf(9) !== -1) && $('#container-3').html() == "") {
+            if (move == 0 && ((pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(16) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(26) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(29) !== -1) ||(pattern.indexOf(1) !== -1 && pattern.indexOf(2) !== -1 ) || (pattern.indexOf(5) !== -1 && pattern.indexOf(7) !== -1 ) || (pattern.indexOf(6) !== -1) && pattern.indexOf(9) !== -1) && $('#container-3').html() == "") {
                 compArray.push(3);
-                $('#container-3').html(compSymbol); 
+                $('#container-3').html(compSymbol).css({'background-color': compColor}); 
                 move = 1;
-                // console.log(compArray);
+
             }
             if (move == 0 &&((pattern.indexOf(1) !== -1 && pattern.indexOf(7) !== -1) || (pattern.indexOf(5) !== -1 && pattern.indexOf(6) !== -1 ) || (pattern.indexOf(2) !== -1 && pattern.indexOf(8) !== -1) || (pattern.indexOf(4) !== -1 && pattern.indexOf(6) !== -1)) && $('#container-4').html() == "") {
                 compArray.push(4);
-                $('#container-4').html(compSymbol);
+                $('#container-4').html(compSymbol).css({'background-color': compColor});
                 move = 1;
-            //    alert('mainAlgoMove 4');
-
-                // console.log(compArray);
             }
             if (move == 0 && ((pattern.indexOf(1) !== -1 && pattern.indexOf(9) !== -1) || (pattern.indexOf(2) !== -1 && pattern.indexOf(8) !== -1) || (pattern.indexOf(3) !== -1 && pattern.indexOf(7) !== -1) || (pattern.indexOf(4) !== -1 && pattern.indexOf(6) !== -1)) && $('#container-5').html() == "") {
                 compArray.push(5);
-                $('#container-5').html(compSymbol);
+                $('#container-5').html(compSymbol).css({'background-color': compColor});
                 move = 1;
-         //       alert('mainAlgoMove');
-                // console.log(compArray);
             }
             if (move == 0 && ((pattern.indexOf(3) !== -1 && pattern.indexOf(9) !== -1) || (pattern.indexOf(4) !== -1 && pattern.indexOf(5) !== -1)) && $('#container-6').html() == "") {
                 compArray.push(6);
-                $('#container-6').html(compSymbol);
+                $('#container-6').html(compSymbol).css({'background-color': compColor});
                 move = 1;
-                // console.log(compArray);
             }
-            if (move == 0 && (                  (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(48) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(49) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(18) !== -1) ||                   (pattern.indexOf(1) !== -1 && pattern.indexOf(4) !== -1) || (pattern.indexOf(3) !== -1 && pattern.indexOf(5) !== -1) || (pattern.indexOf(8) !== -1 && pattern.indexOf(9) !== -1)) && $('#container-7').html() == "") {
+            if (move == 0 && ((pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(48) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(49) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(18) !== -1) ||                   (pattern.indexOf(1) !== -1 && pattern.indexOf(4) !== -1) || (pattern.indexOf(3) !== -1 && pattern.indexOf(5) !== -1) || (pattern.indexOf(8) !== -1 && pattern.indexOf(9) !== -1)) && $('#container-7').html() == "") {
                 compArray.push(7);
-                $('#container-7').html(compSymbol);
+                $('#container-7').html(compSymbol).css({'background-color': compColor});
                 move = 1;
-                // console.log(compArray);
             }
             if (move == 0 && ((pattern.indexOf(2) !== -1 && pattern.indexOf(5) !== -1) || (pattern.indexOf(7) !== -1 && pattern.indexOf(9) !== -1)) && $('#container-8').html() == "") {
                 compArray.push(8);
-                $('#container-8').html(compSymbol);
+                $('#container-8').html(compSymbol).css({'background-color': compColor});
                 move = 1;
-                // console.log(compArray);
             }
-            if (move == 0 && (               (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(68) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(38) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(67) !== -1) ||          (pattern.indexOf(1) !== -1 && pattern.indexOf(5) !== -1) || (pattern.indexOf(3) !== -1 && pattern.indexOf(6) !== -1) || (pattern.indexOf(7) !== -1 && pattern.indexOf(8) !== -1)) && $('#container-9').html() == "") {
+            if (move == 0 && ((pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(68) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(38) !== -1) || (pattern.length == 2 && compJoined.length == 1 && pattern.indexOf(67) !== -1) ||          (pattern.indexOf(1) !== -1 && pattern.indexOf(5) !== -1) || (pattern.indexOf(3) !== -1 && pattern.indexOf(6) !== -1) || (pattern.indexOf(7) !== -1 && pattern.indexOf(8) !== -1)) && $('#container-9').html() == "") {
                 compArray.push(9);
-                $('#container-9').html(compSymbol);
+                $('#container-9').html(compSymbol).css({'background-color': compColor});
                 move = 1;
-                // console.log(compArray);
             }
         }
 
         function mostWinPosibilitiesMove() {
-            alert(move + ' before mostWins');// finds the move with the most ammount of win possibilities
             
             if (move == 0){
             var winPossibilities = 0;
@@ -346,16 +256,14 @@ $(function() {
             }
             }
         compArray.push(nextMove[0]);
-        $('#container-' + nextMove[0]).html(compSymbol); 
+        $('#container-' + nextMove[0]).html(compSymbol).css({'background-color': compColor}); 
 }
         }
 
 function fillBoardMove(){
-  //  alert('fillBoardMove');
 if (move == 0){
-        alert('fillBoardMove');
           compArray.push(missingMoves[0]);
-    $('#container-' + missingMoves[0]).html(compSymbol);
+    $('#container-' + missingMoves[0]).html(compSymbol).css({'background-color': compColor});
     }
  }
     }

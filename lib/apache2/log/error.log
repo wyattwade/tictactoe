@@ -6,3 +6,9 @@
 [Thu Feb 11 23:18:21.033411 2016] [mpm_prefork:notice] [pid 3037] AH00169: caught SIGTERM, shutting down
 [Thu Feb 11 23:18:22.965068 2016] [mpm_prefork:notice] [pid 3328] AH00163: Apache/2.4.7 (Ubuntu) PHP/5.5.9-1ubuntu4.14 configured -- resuming normal operations
 [Thu Feb 11 23:18:22.965139 2016] [core:notice] [pid 3328] AH00094: Command line: 'apache2'
+[Fri Feb 12 19:19:22.935053 2016] [mpm_prefork:notice] [pid 3328] AH00169: caught SIGTERM, shutting down
+[Fri Feb 12 19:19:25.488480 2016] [mpm_prefork:notice] [pid 8263] AH00163: Apache/2.4.7 (Ubuntu) PHP/5.5.9-1ubuntu4.14 configured -- resuming normal operations
+[Fri Feb 12 19:19:25.488563 2016] [core:notice] [pid 8263] AH00094: Command line: 'apache2'
+[Mon Feb 15 21:30:35.536417 2016] [core:warn] [pid 2036] AH00098: pid file /home/ubuntu/lib/apache2/run/apache2.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon Feb 15 21:30:35.542538 2016] [mpm_prefork:notice] [pid 2036] AH00163: Apache/2.4.7 (Ubuntu) PHP/5.5.9-1ubuntu4.14 configured -- resuming normal operations
+[Mon Feb 15 21:30:35.542584 2016] [core:notice] [pid 2036] AH00094: Command line: 'apache2'
