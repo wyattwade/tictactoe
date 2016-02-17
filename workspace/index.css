@@ -6,18 +6,18 @@ body {
 
 
 #title{
-    position: absolute;
-   left: 10%;
-   top: -40%; 
-   margin-left: -50px;
-    height: 50px;
-    width: 400px;
-    font-size: 50px;
-    margin-top: 40px;
-    text-align: right;
-    font-family: 'Courier New';
-    font-weight: bold;
-    text-align: center;
+  position: absolute;
+  left: 10%;
+  top: -40%; 
+  margin-left: -50px;
+  height: 50px;
+  width: 400px;
+  font-size: 50px;
+  margin-top: 40px;
+  text-align: right;
+  font-family: 'Courier New';
+  font-weight: bold;
+  text-align: center;
 
 }
 
@@ -35,11 +35,11 @@ body {
   margin: auto;
   background-color: white;
   background-size:23em 23em;
-     position: absolute;
-   left: 50%;
-   top: 50%; 
-   margin-left: -150px;
-   margin-top: -150px;
+  position: absolute;
+  left: 50%;
+  top: 50%; 
+  margin-left: -150px;
+  margin-top: -150px;
 }
 
 .container {
@@ -55,17 +55,17 @@ body {
 }
 
 #countContainer{
-    position: absolute;
-   left: 50%;
-   top: 40%; 
-   margin-left: -500px;
-    height: 50px;
-    width: 300px;
-    font-size: 40px;
-    margin-top: 40px;
-    text-align: right;
-    font-family: 'Courier New';
-    font-weight: bold;
+  position: absolute;
+  left: 50%;
+  top: 40%; 
+  margin-left: -500px;
+  height: 50px;
+  width: 300px;
+  font-size: 40px;
+  margin-top: 40px;
+  text-align: right;
+  font-family: 'Courier New';
+  font-weight: bold;
 }
 
 #resetButton {
@@ -117,67 +117,66 @@ body {
 
 
 #chooseColorText{
-      position: absolute;
-      font-family: courier new;
-      margin-left: -30px;
-      margin-top: -20px;
-      font-size: 12px;
-      font-weight: bold;
-      width: 200px;
+  position: absolute;
+  font-family: courier new;
+  margin-left: -30px;
+  margin-top: -20px;
+  font-size: 12px;
+  font-weight: bold;
+  width: 200px;
 }
 
 #playerColors{
-    position: absolute;
-   left: 50%;
-   top: 45%; 
-   margin-left: 300px;
-   margin-top: -110px;
+  position: absolute;
+  left: 50%;
+  top: 45%; 
+  margin-left: 300px;
+  margin-top: -110px;
 }
 
 .colorButton{
-    height: 55px;
-    width: 110px;
-    border: solid black 1px;
-    margin-top: 10px;
-    border-radius: 20px;
-    box-shadow: 1px 1px 1px 1px;
+  height: 55px;
+  width: 110px;
+  border: solid black 1px;
+  margin-top: 10px;
+  border-radius: 20px;
+  box-shadow: 1px 1px 1px 1px;
 }
 
 .colorButton:hover{
-    box-shadow: 2px 2px 2px 2px;
+  box-shadow: 2px 2px 2px 2px;
 }
 
 
 #orange{
-          background-color: orange;
+  background-color: orange;
 }
 
 #greenyellow{
-        background-color: greenyellow;
+  background-color: greenyellow;
 
 }
 
 #green{
-    background-color: green;
+  background-color: green;
 }
 
 #cyan{
-        background-color: cyan;
-
+  background-color: cyan;
 }
 
 
 
 #blue{
-        background-color: blue;
+  background-color: blue;
 
 }
 
 #red{
-        background-color: red;
-        float:left;
-        text-align: center;
-        font-weight: bold;
+  background-color: red;
+  float:left;
+  text-align: center;
+  font-weight: bold;
 }
 
 

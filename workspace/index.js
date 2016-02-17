@@ -2,13 +2,13 @@ $(function() {
 
  
   var availableWinningSets = [[1, 2, 3], [1, 4, 7], [1, 5, 9], [2, 5, 8], [3, 5, 7], [3, 6, 9], [4, 5, 6], [7, 8, 9]];   //sets the computer can still win with. This array changes throughout the course of the program.
-   var move; // is zero if the computer hasn't gone yet, is one if the computer has gone.
-    
-    
-    var mainArray = [['skip'],[/*1*/[2,3],[5,9],[4,7]], [/*2*/[5,8],[1,3]], [/*3*/[1,2],[5,7],[6,9]], [/*4*/[5,6],[1,7]], [/*5*/[1,9],[2,8],[3,7],[4,6]],[/*6*/[4,5],[3,9]],[/*7*/[1,4],[8,9],[3,5]], [/*8*/[2,5],[7,9]], [/*9*/[3,6],[7,8],[1,5]]]; // zero position is essentially skipped so the index will align with the container being called later on. 
-    var cornerMoveArray = [['skip'],[/*1*/[2,4],[2,7],[3,4]],[/*2*/[1,9],[3,7]],[/*3*/[2,6],[2,9],[1,6]],['skip'],['skip'],['skip'],[/*7*/[4,8],[4,9],[1,8]],['skip'],[/*9*/[6,8],[6,7],[3,8]]]; // if the player has gone twice and has any of these combinations, computer needs to move to the corner to tie or win.twice and has any of these combinations, computer needs to move to the corner to tie or win.
   
-   var pattern; // The most used varialbe in the program. It's value is highly dynamic.
+  var mainArray = [['skip'],[/*1*/[2,3],[5,9],[4,7]], [/*2*/[5,8],[1,3]], [/*3*/[1,2],[5,7],[6,9]], [/*4*/[5,6],[1,7]], [/*5*/[1,9],[2,8],[3,7],[4,6]],[/*6*/[4,5],[3,9]],[/*7*/[1,4],[8,9],[3,5]], [/*8*/[2,5],[7,9]], [/*9*/[3,6],[7,8],[1,5]]]; // zero position is essentially skipped so the index will align with the container being called later on. 
+  
+  var cornerMoveArray = [['skip'],[/*1*/[2,4],[2,7],[3,4]],[/*2*/[1,9],[3,7]],[/*3*/[2,6],[2,9],[1,6]],['skip'],['skip'],['skip'],[/*7*/[4,8],[4,9],[1,8]],['skip'],[/*9*/[6,8],[6,7],[3,8]]]; // if the player has gone twice and has any of these combinations, computer needs to move to the corner to tie or win.twice and has any of these combinations, computer needs to move to the corner to tie or win.
+  
+  var move; // is zero if the computer hasn't gone yet, is one if the computer has gone.
+  var pattern; // The most used varialbe in the program. It's value is highly dynamic.
   var playerArray = []; // all player moves combined;
   var compArray = []; // all computer moves combined;
   var totalArray; // player + computer moves combined;
@@ -68,11 +68,6 @@ $(function() {
   }
 
 
-
-
-
-
-
   function checkForWin(pattern) { // the pattern either equels playerArray or compArray. if the pattern equels player array, it's looking for a player win, if it equels compArray, it's looking for a computer win.
 
     if ((pattern.indexOf(1) !== -1 && pattern.indexOf(2) !== -1 && pattern.indexOf(3) !== -1) || // horizontal wins
@@ -100,11 +95,6 @@ $(function() {
   }
 
 
-
-
-
-
-
   function checkForTie() { // if a win did not take place, this move is next in the stack. If there are over 8 moves and a win didn't occur, a tie has occured. Initialize and update the tie count.
 
     totalArray = playerArray.concat(compArray).sort();
@@ -117,6 +107,7 @@ $(function() {
 
     }
   }
+
 
   function initialize() { // clears the board of player and computer moves. Does not clear the tie win and loss count however.
 
@@ -139,6 +130,7 @@ $(function() {
     ];
   }
 
+
   function computerFirst() { // the computer the first move on the board. This move is random to keep variety in the game. This function triggers either when the compFirstButton is clicked, or when the player had the last move in the previous round.  
 
     initialize();
@@ -160,8 +152,6 @@ $(function() {
   }
 
 
-
-
   function computersTurn() { // Though this function only represents one computer turn at a time, this function has many child functions. It evaluates it's own positions, then the players positions using multiple functions to determine the next best move. 
 
 // ****************************************************************************************************************************************************************
@@ -177,8 +167,6 @@ $(function() {
     checkForTie();
 
 // ****************************************************************************************************************************************************************
-
-
 
 
     function mainAlgoMove(pattern) { // This move is evaluated twice every computer turn. The first time it is evaluated, pattern = compArray. In other words, 
