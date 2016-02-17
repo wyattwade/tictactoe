@@ -12,3 +12,18 @@
 [Mon Feb 15 21:30:35.536417 2016] [core:warn] [pid 2036] AH00098: pid file /home/ubuntu/lib/apache2/run/apache2.pid overwritten -- Unclean shutdown of previous Apache run?
 [Mon Feb 15 21:30:35.542538 2016] [mpm_prefork:notice] [pid 2036] AH00163: Apache/2.4.7 (Ubuntu) PHP/5.5.9-1ubuntu4.14 configured -- resuming normal operations
 [Mon Feb 15 21:30:35.542584 2016] [core:notice] [pid 2036] AH00094: Command line: 'apache2'
+[Mon Feb 15 21:53:16.977996 2016] [mpm_prefork:notice] [pid 2036] AH00169: caught SIGTERM, shutting down
+[Mon Feb 15 21:54:12.855188 2016] [mpm_prefork:notice] [pid 2721] AH00163: Apache/2.4.7 (Ubuntu) PHP/5.5.9-1ubuntu4.14 configured -- resuming normal operations
+[Mon Feb 15 21:54:12.855276 2016] [core:notice] [pid 2721] AH00094: Command line: 'apache2'
+[Tue Feb 16 03:31:57.203217 2016] [core:warn] [pid 3752] AH00098: pid file /home/ubuntu/lib/apache2/run/apache2.pid overwritten -- Unclean shutdown of previous Apache run?
+[Tue Feb 16 03:31:57.209541 2016] [mpm_prefork:notice] [pid 3752] AH00163: Apache/2.4.7 (Ubuntu) PHP/5.5.9-1ubuntu4.14 configured -- resuming normal operations
+[Tue Feb 16 03:31:57.209610 2016] [core:notice] [pid 3752] AH00094: Command line: 'apache2'
+[Tue Feb 16 03:32:32.664561 2016] [mpm_prefork:notice] [pid 3752] AH00169: caught SIGTERM, shutting down
+[Tue Feb 16 03:32:35.817508 2016] [mpm_prefork:notice] [pid 4041] AH00163: Apache/2.4.7 (Ubuntu) PHP/5.5.9-1ubuntu4.14 configured -- resuming normal operations
+[Tue Feb 16 03:32:35.817589 2016] [core:notice] [pid 4041] AH00094: Command line: 'apache2'
+[Tue Feb 16 03:33:02.144026 2016] [mpm_prefork:notice] [pid 4041] AH00169: caught SIGTERM, shutting down
+[Tue Feb 16 03:33:05.009644 2016] [mpm_prefork:notice] [pid 4326] AH00163: Apache/2.4.7 (Ubuntu) PHP/5.5.9-1ubuntu4.14 configured -- resuming normal operations
+[Tue Feb 16 03:33:05.009741 2016] [core:notice] [pid 4326] AH00094: Command line: 'apache2'
+[Wed Feb 17 22:07:02.884247 2016] [core:warn] [pid 1472] AH00098: pid file /home/ubuntu/lib/apache2/run/apache2.pid overwritten -- Unclean shutdown of previous Apache run?
+[Wed Feb 17 22:07:02.894623 2016] [mpm_prefork:notice] [pid 1472] AH00163: Apache/2.4.7 (Ubuntu) PHP/5.5.9-1ubuntu4.14 configured -- resuming normal operations
+[Wed Feb 17 22:07:02.894702 2016] [core:notice] [pid 1472] AH00094: Command line: 'apache2'

@@ -4,6 +4,7 @@
 
 
 <head>
+    <link rel="shortcut icon" href="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tic Tac Toe</title>
     <link href='index.css' rel='stylesheet' type="text/css">
@@ -16,7 +17,16 @@
 
 <body>
     
+<div id = 'countContainer'>
+    <div id = 'tieCount'>Ties : 0</div>
+    <div id = 'winCount'>Wins : 0</div>
+    <div id = 'lossCount'>Losses : 0</div>
+</div>
+    
 <div id="container-main">
+    
+     <div id ='title'>Tic-Tac-Toe <div id='me'>by Wyatt Elliott</div></div>
+    
   <button id="container-1" class="container"></button>
   <button id="container-2" class="container"></button>
   <button id="container-3" class="container"></button>
@@ -26,10 +36,29 @@
   <button id="container-7" class="container"></button>
   <button id="container-8" class="container"></button>
   <button id="container-9" class="container"></button>
-  <div id='reset' class='btn'>reset</div>
-  <div id='compFirst' class='btn'>compFirst</div>
+  <div id='resetButton'>Reset</div>
+  <div id='compFirstButton'>CompFirst</div>
 </div>
 
+    
+    
+    <div id='colorSelect'>
+        <div id ='playerColors'> 
+            <div id='chooseColorText'>Choose a Color (optional)</div>
+            <div id='orange' class = 'colorButton'></div>
+            <div id='greenyellow' class = 'colorButton'></div>
+            <div id='green' class = 'colorButton'></div>
+            <div id='cyan' class = 'colorButton'></div>
+            <div id='blue' class = 'colorButton'></div>
+            <div id='red' class = 'colorButton'><br>MemoryMode</div> 
+
+
+        </div>
+
+    </div>    
+    
+    
+    
 </body>
 
 
